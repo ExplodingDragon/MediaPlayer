@@ -1,3 +1,24 @@
 <resources>
-    <string name="app_name">MediaPlayer</string>
+    <string name="app_name">同步音乐播放器</string>
+    <string name="allowPermissionSuccessful">授权成功！</string>
+    <string name="allowPermissionFail">授权失败，请手动允许权限！</string>
+    <string name="authorizationTitle">用户授权</string>
+    <string name="allow">同意并授权</string>
+    <string name="disAllow">退出软件</string>
+
+    <string-array name="authorizationMessageArray">
+        <item>为了能够更好的使用此软件，我们需要以下权限：</item>
+        <item>+ 读取、写入您的外置储存设备（基础权限）</item>
+        <item>+ 访问网络</item>
+        <item>+ 获取网络环境信息</item>
+        <item>+ 开放端口与其他设备通信</item>
+        <item>+ 工作时常驻后台</item>
+        <item>+ 推送通知</item>
+        <item></item>
+        <item>注意：如果未授权，程序可能发生未知错误！</item>
+
+
+
+
+    </string-array>
 </resources>

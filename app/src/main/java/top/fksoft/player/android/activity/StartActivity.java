@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import top.fksoft.player.android.R;
 import top.fksoft.player.android.fragment.SoftPrefFragment;
-import top.fksoft.player.android.utils.AndroidUtils;
+import top.fksoft.player.android.utils.android.ThemeUtils;
 import top.fksoft.player.android.utils.dao.Animation2Listener;
 import top.fksoft.player.android.utils.dao.BaseActivity;
 
@@ -71,7 +71,7 @@ public class StartActivity extends BaseActivity {
     protected void initView() {
         ignoreNavigationBar();
         ignoreStatusBar();
-        AndroidUtils.fullscreen(getContext());
+        ThemeUtils.fullscreen(getContext());
         imgLogo = findViewById(R.id.img_logo);
         message = findViewById(R.id.message);
     }

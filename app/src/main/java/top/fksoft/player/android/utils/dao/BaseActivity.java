@@ -18,7 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import top.fksoft.player.android.R;
 import top.fksoft.player.android.fragment.SoftPrefFragment;
-import top.fksoft.player.android.utils.AndroidUtils;
+import top.fksoft.player.android.utils.android.DisplayUtils;
 import top.fksoft.player.android.utils.android.ThemeUtils;
 
 import java.util.ArrayList;
@@ -63,14 +63,14 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(rootViewContainer);
 
         //设置导航栏状态栏高度
-        int displayWidth = AndroidUtils.getDisplayWidth(getContext());
+        int displayWidth = DisplayUtils.getDisplayWidth(getContext());
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) statusBar.getLayoutParams();
-        params.height = AndroidUtils.getStatusBarHeight(getContext());
+        params.height = DisplayUtils.getStatusBarHeight(getContext());
         params.width = displayWidth;
         statusBar.setLayoutParams(params);
 
         params = (LinearLayout.LayoutParams) navigationBar.getLayoutParams();
-        params.height = AndroidUtils.getNavigationBarHeight(getContext());
+        params.height = DisplayUtils.getNavigationBarHeight(getContext());
         params.width = displayWidth;
         navigationBar.setLayoutParams(params);
         //设置导航栏状态栏高度 end;
@@ -82,7 +82,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         //处理内部布局的高度 End
         initView();//初始化控件绑定
         initData();//初始化数据处理
-        AndroidUtils.immersive(getContext());
+        ThemeUtils.immersive(getContext());
     }
 
     @Override
@@ -101,7 +101,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * <p>重新指定状态栏和导航栏的遮罩控件，适应其他布局</p>
      * @param statusBar 状态栏
-     * @param navigationBar 导航栏
+     * @param navigationBar 导航栏v
      */
     public void bindStatus2Navigation(TextView statusBar,TextView navigationBar){
         this.statusBar = statusBar;

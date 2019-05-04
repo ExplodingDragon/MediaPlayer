@@ -5,10 +5,15 @@
     <string name="authorizationTitle">用户授权</string>
     <string name="allow">同意并授权</string>
     <string name="disAllow">退出软件</string>
+    <string name="displaySet">显示设置</string>
+    <string name="closeStatus">关闭通知栏遮罩</string>
+    <string name="closeStatusSummary">关闭通知栏遮罩以修复显示异常的问题。</string>
+    <string name="closeNavigation">关闭导航栏遮罩</string>
+    <string name="closeNavigationSummary">关闭导航栏遮罩以修复显示异常的问题。</string>
 
     <string-array name="authorizationMessageArray">
         <item>为了能够更好的使用此软件，我们需要以下权限：</item>
-        <item>+ 读取、写入您的外置储存设备（基础权限）</item>
+        <item>+ 读取、写入SD卡</item>
         <item>+ 访问网络</item>
         <item>+ 获取网络环境信息</item>
         <item>+ 开放端口与其他设备通信</item>

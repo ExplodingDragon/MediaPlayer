@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import static top.fksoft.player.android.fragment.SoftPrefFragment.Key.ShowNavigation;
 import static top.fksoft.player.android.fragment.SoftPrefFragment.Key.ShowStatus;
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
     private static final int REQUEST_PERMISSION_CODE = 1;
     private SharedPreferences preferences;
     private View rootLayout;
@@ -91,9 +91,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             if (!ignoreStatusBar && !preferences.getBoolean(ShowStatus,false)){
                 statusBar.setVisibility(View.VISIBLE);
+            }else {
+                statusBar.setVisibility(View.GONE);
             }
             if (!ignoreNavigationBar && !preferences.getBoolean(ShowNavigation, false)) {
                 navigationBar.setVisibility(View.VISIBLE);
+            }else {
+                navigationBar.setVisibility(View.GONE);
             }
         }
     }

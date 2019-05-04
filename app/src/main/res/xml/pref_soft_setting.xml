@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:tools="http://schemas.android.com/tools"
+                  xmlns:android="http://schemas.android.com/apk/res/android"
+        android:iconSpaceReserved="false">
 
+    <PreferenceCategory
+            android:iconSpaceReserved="false"
+            android:title="@string/displaySet">
+        <SwitchPreference
+                android:defaultValue="false"
+                android:iconSpaceReserved="false"
+                android:title="@string/closeStatus"
+                android:summary="@string/closeStatusSummary"
+                android:key="ShowStatus"/>
+        <SwitchPreference
+                android:defaultValue="false"
+                android:iconSpaceReserved="false"
+                android:title="@string/closeNavigation"
+                android:summary="@string/closeNavigationSummary"
+                android:key="ShowNavigation"/>
+
+    </PreferenceCategory>
 </PreferenceScreen>

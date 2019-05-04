@@ -2,18 +2,28 @@ package top.fksoft.player.android.activity;
 
 import android.Manifest;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AlertDialog;
+import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 import top.fksoft.player.android.R;
 import top.fksoft.player.android.fragment.SoftPrefFragment;
+import top.fksoft.player.android.io.FileIO;
+import top.fksoft.player.android.io.Logcat;
 import top.fksoft.player.android.utils.android.ThemeUtils;
 import top.fksoft.player.android.utils.dao.Animation2Listener;
 import top.fksoft.player.android.utils.dao.BaseActivity;
 
+
 public class StartActivity extends BaseActivity {
+    private static final String TAG = "StartActivity";
+
+
+
     final String[] permission = new String[]
             {
                     Manifest.permission.ACCESS_NETWORK_STATE,
@@ -26,22 +36,21 @@ public class StartActivity extends BaseActivity {
     private TextView message;
 
 
-
     protected void init() {
         boolean authorAllow = getPreferences().getBoolean(SoftPrefFragment.Key.UserAuthorization, false);
         if (!authorAllow) {
             new AlertDialog.Builder(getContext())
                     .setTitle(R.string.authorizationTitle)
-                    .setItems(R.array.authorizationMessageArray,null)
+                    .setItems(R.array.authorizationMessageArray, null)
                     .setCancelable(false)
                     .setPositiveButton(R.string.allow, (dialog, which) -> {
-                        getPreferences().edit().putBoolean(SoftPrefFragment.Key.UserAuthorization,true).commit();
+                        getPreferences().edit().putBoolean(SoftPrefFragment.Key.UserAuthorization, true).commit();
                         requestPermissions(permission);
                     })
                     .setNegativeButton(R.string.disAllow, (dialog, which) -> finish())
                     .setOnCancelListener(dialog -> requestPermissions(permission))
                     .show();
-        }else {
+        } else {
             requestPermissions(permission);
         }
     }
@@ -49,9 +58,21 @@ public class StartActivity extends BaseActivity {
     @Override
     public void permissionSuccessful(int length) {
         super.permissionSuccessful(length);
-        startActivity(new Intent(getContext(),MainActivity.class));
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        finish();
+        new Thread(()->{
+            try{
+                FileIO fileIO = FileIO.newInstance();
+                fileIO.initEnv();//初始化文件夹
+                fileIO.writeWallpaper();//写入壁纸
+            }catch (Exception e){
+                Logcat.e(TAG, "permissionSuccessful: ",e );
+            }finally {
+                Message msg = new Message();
+                msg.what = 1;
+                handler.sendMessage(msg);
+            }
+
+        }).start();
+
     }
 
     @Override
@@ -59,7 +80,7 @@ public class StartActivity extends BaseActivity {
         AlphaAnimation animation = new AlphaAnimation(0, 1);
         animation.setDuration(1000);
         animation.setFillAfter(true);
-        animation.setAnimationListener(new Animation2Listener(){
+        animation.setAnimationListener(new Animation2Listener() {
             @Override
             public void onAnimationEnd(Animation animation) {
                 init();
@@ -67,6 +88,7 @@ public class StartActivity extends BaseActivity {
         });
         message.setAnimation(animation);
     }
+
     @Override
     protected void initView() {
         ignoreNavigationBar();
@@ -75,8 +97,25 @@ public class StartActivity extends BaseActivity {
         imgLogo = findViewById(R.id.img_logo);
         message = findViewById(R.id.message);
     }
+
     @Override
     protected Object initLayout() {
         return R.layout.activity_start;
+    }
+
+    public Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            if (msg.what == 1) {
+                startActivity(new Intent(getContext(), MainActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                finish();
+            }
+        }
+    };
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

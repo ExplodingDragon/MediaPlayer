@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:showIn="navigation_view">
+    <group android:checkableBehavior="single" android:id="@+id/menu_list">
+
+        <item android:title="@string/playList"
+              android:checked="true"
+              android:id="@+id/menu_play_list"
+              android:icon="@mipmap/menu_play_list"/>
+
+        <item android:title="@string/serverConfig"
+              android:id="@+id/menu_server_config"
+              android:icon="@mipmap/menu_server_config"/>
+
+        <item android:title="@string/clientConfig"
+              android:id="@+id/menu_client_config"
+              android:icon="@mipmap/menu_client_config"/>
+
+    </group>
+    <item android:title="@string/menuOther">
+        <menu>
+            <item
+                    android:id="@+id/menu_client"
+                    android:icon="@mipmap/menu_client"
+                    android:title="@string/menuClient"/>
+            <item
+                    android:id="@+id/menu_set"
+                    android:icon="@mipmap/menu_set"
+                    android:title="@string/menuSetting"/>
+            <item
+                    android:id="@+id/menu_about"
+                    android:icon="@mipmap/menu_about"
+                    android:title="@string/menuAbout"/>
+            <item
+                    android:id="@+id/menu_exit"
+                    android:icon="@mipmap/menu_exit"
+                    android:title="@string/menuExit"/>
+        </menu>
+    </item>
+</menu>

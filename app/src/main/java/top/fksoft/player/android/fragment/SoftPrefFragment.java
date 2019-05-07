@@ -22,5 +22,6 @@ public class SoftPrefFragment extends PreferenceFragmentCompat {
         String UserAuthorization = "UserAuthorization";
         String ShowStatus= "ShowStatus";
         String ShowNavigation = "ShowNavigation";
+        String LastWallpaperDay = "LastWallpaperDay";
     }
 }

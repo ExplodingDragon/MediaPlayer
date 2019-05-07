@@ -1,4 +1,4 @@
-package top.fksoft.player.android.config;
+package top.fksoft.player.android;
 
 import android.app.Application;
 import android.content.Context;
@@ -10,7 +10,7 @@ public class SoftApplication extends Application {
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
-        LitePal.initialize(context);
+        LitePal.initialize(this);
     }
 
     public static Context getContext() {

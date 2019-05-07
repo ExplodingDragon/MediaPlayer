@@ -30,9 +30,9 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     private static final int REQUEST_PERMISSION_CODE = 1;
     private SharedPreferences preferences;
     private View rootLayout;
-    private TextView statusBar;
+    private View statusBar;
+    private View navigationBar;
     private LinearLayout rootViewContainer;
-    private TextView navigationBar;
     private boolean ignoreStatusBar = false,ignoreNavigationBar = false;
 
     @Override
@@ -52,28 +52,11 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         navigationBar = new TextView(getContext());
         statusBar.setVisibility(View.GONE);
         navigationBar.setVisibility(View.GONE);
-        //指定背景颜色
-        int darkColorPrimary = ThemeUtils.getColorAccent(getContext());
-        statusBar.setBackgroundColor(darkColorPrimary);
-        navigationBar.setBackgroundColor(darkColorPrimary);
-        //指定背景颜色 end
         rootViewContainer.addView(statusBar,0);
         rootViewContainer.addView(rootLayout,1);
         rootViewContainer.addView(navigationBar,2);
         setContentView(rootViewContainer);
 
-        //设置导航栏状态栏高度
-        int displayWidth = DisplayUtils.getDisplayWidth(getContext());
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) statusBar.getLayoutParams();
-        params.height = DisplayUtils.getStatusBarHeight(getContext());
-        params.width = displayWidth;
-        statusBar.setLayoutParams(params);
-
-        params = (LinearLayout.LayoutParams) navigationBar.getLayoutParams();
-        params.height = DisplayUtils.getNavigationBarHeight(getContext());
-        params.width = displayWidth;
-        navigationBar.setLayoutParams(params);
-        //设置导航栏状态栏高度 end;
         //处理内部布局的高度
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) rootLayout.getLayoutParams();
         layoutParams.weight = 1;
@@ -88,6 +71,27 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onStart() {
         super.onStart();
+       initStatus2Nav();
+    }
+
+    private void initStatus2Nav(){
+        //设置导航栏状态栏高度
+        int displayWidth = DisplayUtils.getDisplayWidth(getContext());
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) statusBar.getLayoutParams();
+        params.height = DisplayUtils.getStatusBarHeight(getContext());
+        params.width = displayWidth;
+        statusBar.setLayoutParams(params);
+
+        params = (LinearLayout.LayoutParams) navigationBar.getLayoutParams();
+        params.height = DisplayUtils.getNavigationBarHeight(getContext());
+        params.width = displayWidth;
+        navigationBar.setLayoutParams(params);
+        //设置导航栏状态栏高度 end;
+        //指定背景颜色
+        int colorPrimary = ThemeUtils.getColorPrimary(getContext());
+        statusBar.setBackgroundColor(ThemeUtils.getDarkColorPrimary(getContext()));
+        navigationBar.setBackgroundColor(colorPrimary);
+        //指定背景颜色 end
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             if (!ignoreStatusBar && !preferences.getBoolean(ShowStatus,false)){
                 statusBar.setVisibility(View.VISIBLE);
@@ -107,7 +111,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
      * @param statusBar 状态栏
      * @param navigationBar 导航栏v
      */
-    public void bindStatus2Navigation(TextView statusBar,TextView navigationBar){
+    public void bindStatus2Navigation(View statusBar,View navigationBar){
         this.statusBar = statusBar;
         this.navigationBar = navigationBar;
     }

@@ -13,7 +13,7 @@ import android.widget.TextView;
 import top.fksoft.player.android.R;
 import top.fksoft.player.android.fragment.SoftPrefFragment;
 import top.fksoft.player.android.io.FileIO;
-import top.fksoft.player.android.io.Logcat;
+import top.fksoft.player.android.utils.android.LogcatUtils;
 import top.fksoft.player.android.utils.android.ThemeUtils;
 import top.fksoft.player.android.utils.dao.Animation2Listener;
 import top.fksoft.player.android.utils.dao.BaseActivity;
@@ -64,7 +64,7 @@ public class StartActivity extends BaseActivity {
                 fileIO.initEnv();//初始化文件夹
                 fileIO.writeWallpaper();//写入壁纸
             }catch (Exception e){
-                Logcat.e(TAG, "permissionSuccessful: ",e );
+                LogcatUtils.e(TAG, "permissionSuccessful: ",e );
             }finally {
                 Message msg = new Message();
                 msg.what = 1;

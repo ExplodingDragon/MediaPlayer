@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">同步音乐播放器</string>
+
     <string name="allowPermissionSuccessful">授权成功！</string>
     <string name="allowPermissionFail">授权失败，请手动允许权限！</string>
     <string name="authorizationTitle">用户授权</string>
@@ -10,6 +11,22 @@
     <string name="closeStatusSummary">关闭通知栏遮罩以修复显示异常的问题。</string>
     <string name="closeNavigation">关闭导航栏遮罩</string>
     <string name="closeNavigationSummary">关闭导航栏遮罩以修复显示异常的问题。</string>
+    <string name="serverStatus">服务器状态：%s</string>
+    <string name="playList">播放列表</string>
+    <string name="serverConfig">服务器配置</string>
+    <string name="clientConfig">客户端管理</string>
+    <string name="menuOther">其他选项</string>
+    <string name="menuClient">客户端模式</string>
+    <string name="menuSetting">系统设置</string>
+    <string name="menuAbout">关于</string>
+    <string name="menuExit">退出</string>
+    <string name="navigation_drawer_open">打开</string>
+    <string name="navigation_drawer_close">关闭</string>
+    <string name="noWorking">未开启</string>
+    <string name="songList">创建的歌单（%d）</string>
+    <string name="playListHeadLocalSong">本地音乐(%d)</string>
+    <string name="playListHeadHistory">最近播放(%d)</string>
+    <string name="playListHeadLike">我喜欢的(%d)</string>
 
     <string-array name="authorizationMessageArray">
         <item>为了能够更好的使用此软件，我们需要以下权限：</item>

@@ -113,6 +113,8 @@ public class StartActivity extends BaseActivity {
         }
     };
 
+
+
     @Override
     public void onClick(View v) {
 

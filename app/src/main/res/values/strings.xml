@@ -43,6 +43,7 @@
     <string name="exit">取消</string>
     <string name="save_message">确定保存%s?</string>
     <string name="save_error">请输入正确的数据！</string>
+    <string name="editSongList">修改 %s</string>
 
     <string-array name="authorizationMessageArray">
         <item>为了能够更好的使用此软件，我们需要以下权限：</item>

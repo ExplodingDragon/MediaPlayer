@@ -55,6 +55,7 @@ public class ConfigSongListActivity extends BaseActivity {
                     Toast.makeText(getContext(), R.string.SoftError, Toast.LENGTH_SHORT).show();
                     finish();
                 }
+                setTitle(getString(R.string.editSongList,listBean.getListName()));
             }
         }
         int px = DisplayUtils.dip2px(getContext(), 60);

@@ -7,17 +7,26 @@ import java.io.File;
 
 /**
  * <p>歌单的实体类</p>
+ *
+ *
+ *
+ * @NextUpdate 歌单排序
  */
 public class SongListBean extends LitePalSupport {
 
-    private String listName;
+    private String listName;//歌单的名称
 
-    private String imagePath;
+    private String imageHash;//图片的哈希值
 
-    private String listSQLiteName;
+    private String listSQLiteName;//数据表的名称
 
+    private String imageAnotherHash;//默认图片的哈希值
 
-    public String getListName() {
+    public long getBaseObjId() {
+        return super.getBaseObjId();
+    }
+
+    public  String getListName() {
         return listName;
     }
 
@@ -25,7 +34,7 @@ public class SongListBean extends LitePalSupport {
         this.listName = listName;
     }
 
-    public String getListSqliteName() {
+    public String getListSQLiteName() {
         return listSQLiteName;
     }
 
@@ -34,22 +43,30 @@ public class SongListBean extends LitePalSupport {
         if (imagePath == null) {
             return false;
         }else {
-            return imagePath.isFile();
+            return imagePath.isFile() && imagePath.length() != 0;
         }
     }
 
     public File getImagePath() {
-        if (imagePath == null) {
-            return null;
+        if (imageHash != null){
+            return new File(FileIO.newInstance().getMusicPicturePath(), imageHash);
+        }else if (imageAnotherHash != null){
+            return new File(FileIO.newInstance().getMusicPicturePath(), imageAnotherHash);
         }else {
-            return new File(FileIO.newInstance().getMusicPicturePath(),imagePath);
+            return null;
         }
     }
 
-    public void setImagePath(String hashCode) {
-        this.imagePath = hashCode;
+    public String getImageHash() {
+        return imageHash;
     }
 
+    public void setImageHash(String hashCode) {
+        this.imageHash = hashCode;
+    }
+    public void setImage2Hash(String hashCode) {
+        this.imageAnotherHash = hashCode;
+    }
     public void setListSqliteName(String listSqliteName) {
         this.listSQLiteName = listSqliteName;
     }

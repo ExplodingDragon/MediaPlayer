@@ -34,6 +34,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     private View navigationBar;
     private LinearLayout rootViewContainer;
     private boolean ignoreStatusBar = false,ignoreNavigationBar = false;
+    private ImageChooseListener imageChooseListener = null;//图片选择
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -233,4 +234,28 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         ignoreNavigationBar = true;
     }
 
+
+    public boolean sendImageChoose(ImageChooseListener listener){
+        if (this.imageChooseListener == null) {
+            this.imageChooseListener = listener;
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public interface ImageChooseListener {
+        /**
+         * <p>返回选择的图片的绝对地址
+         * </p>
+         *
+         * @param imagePath
+         */
+        void result(String imagePath);
+    }
 }

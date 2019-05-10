@@ -4,10 +4,13 @@ import android.app.WallpaperManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.util.Log;
 import jdkUtils.io.FileUtils;
 import top.fksoft.player.android.SoftApplication;
 import top.fksoft.player.android.fragment.SoftPrefFragment;
+import top.fksoft.player.android.utils.android.BitmapUtils;
 import top.fksoft.player.android.utils.android.LogcatUtils;
 
 import java.io.File;
@@ -118,5 +121,36 @@ public class FileIO {
 
     public File getMusicLrcPath() {
         return musicLrcPath;
+    }
+
+    public Bitmap getMusicPictureBitmap(String imageHash, int px, int fillet) {//加载预设图片
+        return BitmapFactory.decodeFile(createCacheImage(imageHash,px,fillet).getAbsolutePath());
+    }
+
+    public File createCacheImage(String imageHash, int px, int fillet) {
+        File file = new File(getTemp(), "IMG_CACHE_" + imageHash);
+        if (!file.isFile() || file.length() == 0) {
+            FileUtils.delete(file);
+            FileOutputStream fileOutputStream = null;
+            try {
+                fileOutputStream = new FileOutputStream(file);
+                Bitmap bitmap = BitmapUtils.decodeBitmapFromFile(new File(getMusicPicturePath(),imageHash), px, px);
+                Bitmap roundedCornerBitmap = BitmapUtils.getRoundedCornerBitmap(bitmap, 20);
+                roundedCornerBitmap.compress(Bitmap.CompressFormat.PNG,100,fileOutputStream);
+                fileOutputStream.flush();
+                if (!roundedCornerBitmap.isRecycled()) {
+                    roundedCornerBitmap.recycle();
+                }
+            }catch (Exception e){
+                LogcatUtils.w(TAG, "createCacheImage: ",e );
+            }finally {
+                try {
+                    if (fileOutputStream != null) {
+                        fileOutputStream.close();
+                    }
+                }catch (Exception e){}
+            }
+        }
+        return file;
     }
 }

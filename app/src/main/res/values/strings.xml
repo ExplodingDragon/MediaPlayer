@@ -27,6 +27,22 @@
     <string name="playListHeadLocalSong">本地音乐(%d)</string>
     <string name="playListHeadHistory">最近播放(%d)</string>
     <string name="playListHeadLike">我喜欢的(%d)</string>
+    <string name="set">设置</string>
+    <string name="songListItemSize">%d首歌曲</string>
+    <string name="save">保存</string>
+    <string name="delete">删除</string>
+    <string name="listArrImage">歌单封面</string>
+    <string name="imageShowError">图片加载失败</string>
+    <string name="listArrTitle">歌单标题</string>
+    <string name="Crack">各位大爷手下留情</string>
+    <string name="SoftError">软件发生数据库错误</string>
+    <string name="createNewSongList">建立新歌单</string>
+    <string name="edit">修改</string>
+    <string name="delete_message">确定删除%s?它将永久的消失！</string>
+    <string name="ok">确定</string>
+    <string name="exit">取消</string>
+    <string name="save_message">确定保存%s?</string>
+    <string name="save_error">请输入正确的数据！</string>
 
     <string-array name="authorizationMessageArray">
         <item>为了能够更好的使用此软件，我们需要以下权限：</item>
@@ -38,8 +54,6 @@
         <item>+ 推送通知</item>
         <item></item>
         <item>注意：如果未授权，程序可能发生未知错误！</item>
-
-
 
 
     </string-array>

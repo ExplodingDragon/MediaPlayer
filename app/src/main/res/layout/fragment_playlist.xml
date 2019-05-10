@@ -32,7 +32,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:padding="12dp"
-                        android:src="@drawable/arrow_0"
+                        android:src="@drawable/arrow_9"
                         android:id="@+id/extendedImage"/>
                 <TextView
                         android:layout_width="wrap_content"
@@ -61,8 +61,7 @@
             </LinearLayout>
             <ListView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:visibility="gone"
+                    android:layout_height="480dp"
                     android:dividerHeight="0dp"
                     android:divider="#00000000"
                     android:id="@+id/songArrListView"/>

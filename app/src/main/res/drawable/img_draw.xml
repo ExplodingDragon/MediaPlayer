@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape
+                android:shape="rectangle"
+                android:innerRadius="210dp">
+            <corners
+                    android:radius="20dp"></corners>
+            <solid android:color="?attr/colorPrimary"></solid>
+        </shape>
+    </item>
+    <item>
+        <bitmap
+                android:gravity="center"
+                android:src="@drawable/icon">
+
+        </bitmap>
+    </item>
+</layer-list>

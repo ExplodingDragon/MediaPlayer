@@ -43,8 +43,5 @@ public abstract class BaseFragment<T extends Activity>  extends Fragment impleme
     }
 
 
-    @Override
-    public void onClick(View v) {
 
-    }
 }

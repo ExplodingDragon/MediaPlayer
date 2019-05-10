@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <litepal>
-<dbname value="demo" ></dbname>
-
-<version value="4" ></version>
-
+<dbname value="Music" ></dbname>
+<version value="10" ></version>
 <list>
     <mapping class="top.fksoft.player.android.config.SongBean"></mapping>
     <mapping class="top.fksoft.player.android.config.SongListBean"></mapping>
 </list>
-
     <cases value="keep" />
 </litepal>
+<!--各位大佬手下留情-->

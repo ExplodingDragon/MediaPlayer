@@ -7,11 +7,54 @@ import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
-import android.util.Log;
 
 import java.io.File;
 
 public class BitmapUtils {
+
+
+    /**
+     * <p>得到Bitmap圆角对象</p>
+     * @param bitmap 原始Bitmap
+     * @param roundPx 圆角
+     * @return
+     */
+    public static Bitmap getRoundedCornerBitmap(Bitmap bitmap,int roundPx){
+
+        return getRoundedCornerBitmap(bitmap,roundPx,roundPx,false,0,Color.TRANSPARENT);
+    }
+
+
+    /**
+     * 圆角图片
+     * @param bitmap 位图
+     * @param rx x方向上的圆角半径
+     * @param ry y方向上的圆角半径
+     * @param bl 是否需要描边
+     * @param bl 画笔粗细
+     * @param bl 颜色代码
+     * @return bitmap
+     */
+    public static Bitmap getRoundedCornerBitmap(Bitmap bitmap,int rx,int ry,boolean bl,int edge,int color) {
+        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);//创建画布
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+        RectF rectF = new RectF(rect);
+        canvas.drawRoundRect(rectF, rx, ry, paint);//绘制圆角矩形
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));//取相交裁剪
+        canvas.drawBitmap(bitmap, rect, rect, paint);
+        if(bl) {
+            if (color == 0) color = 0xFFFEA248;//默认橘黄色
+            paint.setColor(color);
+            paint.setColor(color);
+            paint.setStyle(Paint.Style.STROKE);//描边
+            paint.setStrokeWidth(edge);
+            canvas.drawRoundRect(rectF, rx, ry, paint);
+        }
+        return output;
+    }
 
     /**
      * <p>裁切bitmap图片
@@ -39,12 +82,28 @@ public class BitmapUtils {
         if (scaledBitmap != bitmap && !scaledBitmap.isRecycled()){
             bitmap.recycle();
         }
-        double w = scaledBitmap.getWidth(); // 得到图片的宽，高
-        double h = scaledBitmap.getHeight();
+        return getBitmap(scaledBitmap, proportion);
+
+    }
+    /**
+     * <p>裁切bitmap图片
+     * </p>
+     * 裁切图片方法，以中心点为标准，
+     *
+     * @param bitmap bitmap对象
+     * @return 裁切后对象
+     */
+    public static Bitmap cropBitmap2(Bitmap bitmap,double proportion) {
+        return getBitmap(bitmap, proportion);
+
+    }
+
+    private static Bitmap getBitmap(Bitmap bitmap, double proportion) {
+        double w = bitmap.getWidth(); // 得到图片的宽，高
+        double h = bitmap.getHeight();
         double k = w > h ? h:w;
         int l = (int) (k / proportion);
-        return Bitmap.createBitmap(scaledBitmap, ((int)(w/2  - (k/2))), ((int)(h/2  - (l/2))), (int)k, l, null, false);
-
+        return Bitmap.createBitmap(bitmap, ((int)(w/2  - (k/2))), ((int)(h/2  - (l/2))), (int)k, l, null, false);
     }
 
 
@@ -71,20 +130,19 @@ public class BitmapUtils {
      * @return bitmap对象
      */
     public static Bitmap getOvalBitmap(Bitmap src,int width){
-        Bitmap squareBitmap = cropBitmap(src,width,width);
-        Bitmap output = Bitmap.createBitmap(squareBitmap.getWidth(), squareBitmap
+        Bitmap output = Bitmap.createBitmap(src.getWidth(), src
                 .getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(output);
         final int color = 0xff424242;
         final Paint paint = new Paint();
-        final Rect rect = new Rect(0, 0, squareBitmap.getWidth(), squareBitmap.getHeight());
+        final Rect rect = new Rect(0, 0, src.getWidth(), src.getHeight());
         final RectF rectF = new RectF(rect);
         paint.setAntiAlias(true);
         canvas.drawARGB(0, 0, 0, 0);
         paint.setColor(color);
         canvas.drawOval(rectF, paint);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-        canvas.drawBitmap(squareBitmap, rect, rect, paint);
+        canvas.drawBitmap(src, rect, rect, paint);
         return output;
     }
 

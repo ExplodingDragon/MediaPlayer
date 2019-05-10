@@ -9,6 +9,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+
     }
     buildTypes {
         release {
@@ -34,6 +36,7 @@ dependencies {
     implementation "com.android.support:preference-v7:$SUPPORT"
     implementation "com.android.support:recyclerview-v7:$SUPPORT"
     implementation "com.android.support:design:$SUPPORT"
+    implementation 'com.github.wildma:PictureSelector:1.1.2'
     implementation 'org.litepal.android:java:3.0.0' //litepad 数据库
     implementation 'com.google.code.gson:gson:2.8.5' //Gson
     implementation 'io.reactivex.rxjava2:rxjava:2.2.8' //RX Java

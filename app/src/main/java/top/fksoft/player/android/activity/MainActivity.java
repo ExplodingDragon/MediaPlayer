@@ -85,6 +85,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 case R.id.menu_play_list:
                     setFragment(fragments[0]);
                     break;
+                case R.id.menu_set:
+                    SettingActivity.start(getContext());
+                    break;
 
         }
         return true;

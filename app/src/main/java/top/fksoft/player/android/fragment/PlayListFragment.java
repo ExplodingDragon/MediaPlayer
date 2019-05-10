@@ -76,11 +76,7 @@ public class PlayListFragment extends MainFragment {
 
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        songListAdapter.notifyData();//刷新数据
-    }
+
 
     @Override
     public void onClick(View v) {
@@ -173,8 +169,13 @@ public class PlayListFragment extends MainFragment {
             songList.setText(getString(R.string.songList, songListBeanArrayList.size()));
 
         }
-    }
+    } //歌单适配器
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        songListAdapter.notifyData();//刷新数据
+    }
 
     public class HeadItemAdapter extends ArrayAdapter<ListBean> {
         private ListBean[] item;

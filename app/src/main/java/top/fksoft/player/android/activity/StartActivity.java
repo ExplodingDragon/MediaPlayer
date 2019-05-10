@@ -23,7 +23,6 @@ public class StartActivity extends BaseActivity {
     private static final String TAG = "StartActivity";
 
 
-
     final String[] permission = new String[]
             {
                     Manifest.permission.ACCESS_NETWORK_STATE,
@@ -58,14 +57,14 @@ public class StartActivity extends BaseActivity {
     @Override
     public void permissionSuccessful(int length) {
         super.permissionSuccessful(length);
-        new Thread(()->{
-            try{
+        new Thread(() -> {
+            try {
                 FileIO fileIO = FileIO.newInstance();
                 fileIO.initEnv();//初始化文件夹
                 fileIO.writeWallpaper();//写入壁纸
-            }catch (Exception e){
-                LogcatUtils.e(TAG, "permissionSuccessful: ",e );
-            }finally {
+            } catch (Exception e) {
+                LogcatUtils.e(TAG, "permissionSuccessful: ", e);
+            } finally {
                 Message msg = new Message();
                 msg.what = 1;
                 handler.sendMessage(msg);
@@ -103,7 +102,7 @@ public class StartActivity extends BaseActivity {
         return R.layout.activity_start;
     }
 
-    public Handler handler = new Handler(){
+    public Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == 1) {
@@ -119,3 +118,4 @@ public class StartActivity extends BaseActivity {
 
     }
 }
+

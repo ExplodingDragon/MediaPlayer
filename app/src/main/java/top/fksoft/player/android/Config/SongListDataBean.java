@@ -2,17 +2,17 @@ package top.fksoft.player.android.config;
 
 
 public class SongListDataBean {
-    private String id;
+    private long id;
     private String musicHash;
-    private String musicObjId;
+    private long musicObjId;
 
-    public SongListDataBean(String id, String musicHash, String musicObjId) {
+    public SongListDataBean(int id, SongBean bean) {
         this.id = id;
-        this.musicHash = musicHash;
-        this.musicObjId = musicObjId;
+        this.musicHash = bean.getHashCode();
+        this.musicObjId = bean.getBaseObjId();
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
@@ -28,14 +28,15 @@ public class SongListDataBean {
         return musicHash.equals(((SongListDataBean) obj).getMusicHash());
     }
 
-    public String getMusicObjId() {
+    public long getMusicObjId() {
         return musicObjId;
     }
 
     public static String createTable(String tableName){
         String s = "create table if not exists" + tableName + "(" +
                 "_id integer primary key autoincrement," +
-                "_musicHash text" +
+                "_musicHash text," +
+                "_objId integer" +
                 ")";
         return s;
     }

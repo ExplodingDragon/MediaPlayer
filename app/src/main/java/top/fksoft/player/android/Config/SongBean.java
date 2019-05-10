@@ -37,6 +37,11 @@ public class SongBean extends LitePalSupport {
         return hashCode;
     }
 
+    @Override
+    public long getBaseObjId() {
+        return super.getBaseObjId();
+    }
+
     public String getSongName() {
         return songName;
     }

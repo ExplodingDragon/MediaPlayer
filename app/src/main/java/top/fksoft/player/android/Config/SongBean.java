@@ -1,16 +1,17 @@
 package top.fksoft.player.android.config;
 
+import android.support.annotation.NonNull;
 import jdkUtils.data.StringUtils;
 import org.litepal.crud.LitePalSupport;
 import top.fksoft.player.android.io.FileIO;
+import top.fksoft.player.android.utils.view.SortListView;
 
 import java.io.File;
-
 
 /**
  * <p>歌曲的实体类</p>
  */
-public class SongBean extends LitePalSupport {
+public class SongBean extends LitePalSupport implements SortListView.ListBean {
 
     private String hashCode;//歌曲的唯一值，由文件路径决定·
 
@@ -102,4 +103,9 @@ public class SongBean extends LitePalSupport {
         return getHashCode().equals(((SongBean) obj).getHashCode());
     }
 
+    @NonNull
+    @Override
+    public String titleCharArr() {
+        return null;
+    }
 }

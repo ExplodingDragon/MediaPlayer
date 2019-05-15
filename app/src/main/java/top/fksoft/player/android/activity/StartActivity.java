@@ -11,7 +11,7 @@ import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 import top.fksoft.player.android.R;
-import top.fksoft.player.android.fragment.SoftPrefFragment;
+import top.fksoft.player.android.activity.settingActivity.SoftPrefFragment;
 import top.fksoft.player.android.io.FileIO;
 import top.fksoft.player.android.utils.android.LogcatUtils;
 import top.fksoft.player.android.utils.android.ThemeUtils;
@@ -23,7 +23,7 @@ public class StartActivity extends BaseActivity {
     private static final String TAG = "StartActivity";
 
 
-    final String[] permission = new String[]
+    final private String[] permission = new String[]
             {
                     Manifest.permission.ACCESS_NETWORK_STATE,
                     Manifest.permission.ACCESS_WIFI_STATE,
@@ -107,7 +107,6 @@ public class StartActivity extends BaseActivity {
         public void handleMessage(Message msg) {
             if (msg.what == 1) {
                 startActivity(new Intent(getContext(), MainActivity.class));
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 finish();
             }
         }

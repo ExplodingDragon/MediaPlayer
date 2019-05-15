@@ -12,19 +12,21 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import top.fksoft.player.android.R;
-import top.fksoft.player.android.fragment.SoftPrefFragment;
+import top.fksoft.player.android.activity.settingActivity.SoftPrefFragment;
 import top.fksoft.player.android.utils.android.DisplayUtils;
 import top.fksoft.player.android.utils.android.ThemeUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import static top.fksoft.player.android.fragment.SoftPrefFragment.Key.ShowNavigation;
-import static top.fksoft.player.android.fragment.SoftPrefFragment.Key.ShowStatus;
+import static top.fksoft.player.android.activity.settingActivity.SoftPrefFragment.Key.ShowNavigation;
+import static top.fksoft.player.android.activity.settingActivity.SoftPrefFragment.Key.ShowStatus;
 
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
     private static final int REQUEST_PERMISSION_CODE = 1;
@@ -35,6 +37,9 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     private LinearLayout rootViewContainer;
     private boolean ignoreStatusBar = false,ignoreNavigationBar = false;
     private ImageChooseListener imageChooseListener = null;//图片选择
+
+    private Toolbar toolbar = null;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,7 +62,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         rootViewContainer.addView(rootLayout,1);
         rootViewContainer.addView(navigationBar,2);
         setContentView(rootViewContainer);
-
         //处理内部布局的高度
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) rootLayout.getLayoutParams();
         layoutParams.weight = 1;
@@ -129,6 +133,10 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     public int requestPermissions(String[] permissions){
         if (permissions == null) {
             return -1;
+        }
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            permissionSuccessful(0);
+            return 0;
         }
         ArrayList<String> permissionList = new ArrayList<>();
         for (int i = 0; i < permissions.length; i++) {
@@ -242,6 +250,24 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         }else {
             return false;
         }
+    }
+
+
+    @Override
+    public void startActivity(Intent intent) {
+        super.startActivity(intent);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
+    public void bindToolbar(int id){
+        toolbar = findViewById(id);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(e->onBackPressed());
+    }
+
+    public Toolbar getToolbar() {
+        return toolbar;
     }
 
     @Override

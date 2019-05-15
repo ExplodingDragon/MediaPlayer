@@ -16,7 +16,7 @@ import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import top.fksoft.player.android.R;
-import top.fksoft.player.android.fragment.PlayListFragment;
+import top.fksoft.player.android.activity.mainActivity.PlayListFragment;
 import top.fksoft.player.android.io.FileIO;
 import top.fksoft.player.android.utils.android.BitmapUtils;
 import top.fksoft.player.android.utils.android.DisplayUtils;

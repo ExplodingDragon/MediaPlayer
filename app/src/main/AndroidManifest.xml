@@ -16,6 +16,10 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
+        <activity android:name=".activity.MusicSearchActivity">
+        </activity>
+        <activity android:name=".activity.LocalActivity">
+        </activity>
         <activity android:name=".activity.ConfigSongListActivity">
         </activity>
         <activity android:name=".activity.SettingActivity">

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:background="#FFF"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="false"
+        android:orientation="vertical">
+    <LinearLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:theme="@style/AppTheme.AppBarOverlay"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay"/>
+
+
+        <android.support.design.widget.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                app:tabIndicatorHeight="2dp"
+                android:layout_height="wrap_content">
+
+            <android.support.design.widget.TabItem
+                    android:id="@+id/tabItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/allMusic"/>
+
+            <android.support.design.widget.TabItem
+                    android:id="@+id/tabItem2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/singer"/>
+
+            <android.support.design.widget.TabItem
+                    android:id="@+id/tabItem3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/album"/>
+            <android.support.design.widget.TabItem
+                    android:id="@+id/tabItem4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/folder"/>
+        </android.support.design.widget.TabLayout>
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior"/>
+
+</LinearLayout>

@@ -44,6 +44,12 @@
     <string name="save_message">确定保存%s?</string>
     <string name="save_error">请输入正确的数据！</string>
     <string name="editSongList">修改 %s</string>
+    <string name="localMusic">本地音乐</string>
+    <string name="allMusic">单曲</string>
+    <string name="singer">歌手</string>
+    <string name="folder">文件夹</string>
+    <string name="album">专辑</string>
+    <string name="importMusic">导入歌单</string>
 
     <string-array name="authorizationMessageArray">
         <item>为了能够更好的使用此软件，我们需要以下权限：</item>

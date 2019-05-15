@@ -32,8 +32,8 @@ public class SongListDataBean {
         return musicObjId;
     }
 
-    public static String createTable(String tableName){
-        String s = "create table if not exists" + tableName + "(" +
+    public static String createTable(String tableName) {
+        String s = "create table if not exists " + tableName + "(" +
                 "_id integer primary key autoincrement," +
                 "_musicHash text," +
                 "_objId integer" +

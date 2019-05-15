@@ -1,4 +1,4 @@
-package top.fksoft.player.android.fragment;
+package top.fksoft.player.android.activity.settingActivity;
 
 import android.content.Context;
 import android.content.SharedPreferences;

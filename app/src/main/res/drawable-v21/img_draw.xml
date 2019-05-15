@@ -7,7 +7,7 @@
                 android:innerRadius="210dp">
             <corners
                     android:radius="20dp"></corners>
-            <solid android:color="@color/colorPrimary"></solid>
+            <solid android:color="?attr/colorPrimary"></solid>
         </shape>
     </item>
     <item>

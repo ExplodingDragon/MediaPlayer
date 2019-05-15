@@ -6,10 +6,9 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.util.Log;
 import jdkUtils.io.FileUtils;
 import top.fksoft.player.android.SoftApplication;
-import top.fksoft.player.android.fragment.SoftPrefFragment;
+import top.fksoft.player.android.activity.settingActivity.SoftPrefFragment;
 import top.fksoft.player.android.utils.android.BitmapUtils;
 import top.fksoft.player.android.utils.android.LogcatUtils;
 

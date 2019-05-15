@@ -1,4 +1,4 @@
-package top.fksoft.player.android.fragment;
+package top.fksoft.player.android.activity.mainActivity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.*;
 import top.fksoft.player.android.R;
 import top.fksoft.player.android.activity.ConfigSongListActivity;
+import top.fksoft.player.android.activity.LocalActivity;
 import top.fksoft.player.android.config.SongListBean;
 import top.fksoft.player.android.io.BeanIO;
 import top.fksoft.player.android.io.FileIO;
@@ -20,7 +21,7 @@ import top.fksoft.player.android.utils.dao.MainFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayListFragment extends MainFragment {
+public class PlayListFragment extends MainFragment implements AdapterView.OnItemClickListener {
     private ListView musicCategories;
     private ImageView extendedImage;
     private TextView songList;
@@ -43,7 +44,7 @@ public class PlayListFragment extends MainFragment {
 
     @Override
     protected int initLayout() {
-        return R.layout.fragment_playlist;
+        return R.layout.activity_main_playlist;
     }
 
     @Override
@@ -62,9 +63,10 @@ public class PlayListFragment extends MainFragment {
                 new ListBean(R.mipmap.playlist_history, getString(R.string.playListHeadHistory, 0)),
                 new ListBean(R.mipmap.playlist_like, getString(R.string.playListHeadLike, 0))
         };
-        headItemAdapter = new HeadItemAdapter(getContext(), R.layout.playlist_item_song, bean);
+        headItemAdapter = new HeadItemAdapter(getContext(), R.layout.activity_main_playlist_item_song, bean);
         musicCategories.setAdapter(headItemAdapter);
         headItemAdapter.notifyDataSetChanged();
+        musicCategories.setOnItemClickListener(this);
         songList.setText(getString(R.string.songList, 0));
         extendedImage.setOnClickListener(this::onClick);
         songList.setOnClickListener(this::onClick);
@@ -118,16 +120,28 @@ public class PlayListFragment extends MainFragment {
 
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        switch (position) {
+            case 0:
+                startActivity(new Intent(getActivity(), LocalActivity.class));
+                break;
+            case 1:
+
+                break;
+        }
+    }
+
     private class SongListAdapter extends ArrayAdapter<SongListBean> {
         public SongListAdapter() {
-            super(PlayListFragment.this.getContext(), R.layout.playlist_list_item, songListBeanArrayList);
+            super(PlayListFragment.this.getContext(), R.layout.activity_main_playlist_list_item, songListBeanArrayList);
         }
 
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             if (convertView == null) {
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.playlist_list_item, parent, false);
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.activity_main_playlist_list_item, parent, false);
             }
             SongListBean bean = songListBeanArrayList.get(position);
             ImageView listImage = convertView.findViewById(R.id.list_image);
@@ -165,6 +179,9 @@ public class PlayListFragment extends MainFragment {
         public void notifyData() {//刷新数据
             songListBeanArrayList.clear();
             songListBeanArrayList.addAll(BeanIO.newInstance().getSongListArray());
+            ViewGroup.LayoutParams layoutParams = songArrListView.getLayoutParams();
+            layoutParams.height = DisplayUtils.dip2px(getContext(),(songListBeanArrayList.size() + 1)*60);
+            songArrListView.setLayoutParams(layoutParams);
             super.notifyDataSetChanged();
             songList.setText(getString(R.string.songList, songListBeanArrayList.size()));
 
@@ -188,7 +205,7 @@ public class PlayListFragment extends MainFragment {
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            View inflate = LayoutInflater.from(getContext()).inflate(R.layout.playlist_item_song, parent, false);
+            View inflate = LayoutInflater.from(getContext()).inflate(R.layout.activity_main_playlist_item_song, parent, false);
             ImageView playlistItem1Image = inflate.findViewById(R.id.playListItemImage);
             TextView playlistItem1Text = inflate.findViewById(R.id.playListItemText);
             ListBean listBean = item[position];

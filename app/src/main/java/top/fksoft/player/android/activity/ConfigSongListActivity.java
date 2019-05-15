@@ -23,7 +23,6 @@ public class ConfigSongListActivity extends BaseActivity {
     final public static String IntentKey_LIST_ID = "IntentKey_LIST_ID";
     final public static String IntentKey_NEW = "IntentKey_NEW";
 
-    private Toolbar toolbar;
     private TextView saveBtn;
     private TextView deleteBtn;
     private ImageView image;
@@ -71,7 +70,6 @@ public class ConfigSongListActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        toolbar = findViewById(R.id.toolbar);
         title = findViewById(R.id.listTitle);
         image = findViewById(R.id.listArrImg);
 
@@ -80,9 +78,7 @@ public class ConfigSongListActivity extends BaseActivity {
         imgBtn = findViewById(R.id.imgBtn);
         titleBtn = findViewById(R.id.titleBtn);
 
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(v -> onBackPressed());
+        bindToolbar(R.id.toolbar);
 
         saveBtn.setOnClickListener(this::onClick);
         deleteBtn.setOnClickListener(this::onClick);
@@ -92,7 +88,7 @@ public class ConfigSongListActivity extends BaseActivity {
 
     @Override
     protected Object initLayout() {
-        return R.layout.activity_add_play_list;
+        return R.layout.activity_config_list;
     }
 
     @Override

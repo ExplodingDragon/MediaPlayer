@@ -14,6 +14,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,6 +56,17 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         rootViewContainer.setFitsSystemWindows(false);
         rootViewContainer.setOrientation(LinearLayout.VERTICAL);
         statusBar = new TextView(getContext());
+        statusBar.setFitsSystemWindows(true);
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                //透明状态栏
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                //透明导航栏
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            }
+        } //处理Android 4.4 下状态栏问题
+
         navigationBar = new TextView(getContext());
         statusBar.setVisibility(View.GONE);
         navigationBar.setVisibility(View.GONE);
@@ -93,8 +105,11 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         navigationBar.setLayoutParams(params);
         //设置导航栏状态栏高度 end;
         //指定背景颜色
-        int colorPrimary = ThemeUtils.getColorPrimary(getContext());
-        statusBar.setBackgroundColor(ThemeUtils.getDarkColorPrimary(getContext()));
+        int colorPrimary = ThemeUtils.getDarkColorPrimary(getContext());
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            colorPrimary = ThemeUtils.getColorPrimary(getContext());
+        }
+            statusBar.setBackgroundColor(colorPrimary);
         navigationBar.setBackgroundColor(colorPrimary);
         //指定背景颜色 end
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {

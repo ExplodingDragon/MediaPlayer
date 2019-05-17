@@ -1,9 +1,8 @@
 package top.fksoft.player.android.activity;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.*;
 import com.wildma.pictureselector.PictureSelector;
@@ -99,7 +98,7 @@ public class ConfigSongListActivity extends BaseActivity {
                 builder.setTitle(R.string.delete)
                         .setMessage(getString(R.string.delete_message, listBean.getListName()))
                         .setPositiveButton(R.string.ok, (dialog, which) -> {
-                            BeanIO.delete(listBean);
+                            BeanIO.newInstance().delete(listBean);
                             finish();
                         }).setNegativeButton(R.string.exit, (dialog, which) -> finish()).show();
                 break;
@@ -147,7 +146,7 @@ public class ConfigSongListActivity extends BaseActivity {
             }
             listBean.setImageHash(hash);
         }
-        BeanIO.save(listBean);
+        BeanIO.newInstance().save(listBean);
     }
 
     @Override

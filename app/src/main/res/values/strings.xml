@@ -50,6 +50,13 @@
     <string name="folder">文件夹</string>
     <string name="album">专辑</string>
     <string name="importMusic">导入歌单</string>
+    <string name="searchMusic">添加音乐</string>
+    <string name="useOtherEngine">使用第三方工具读取歌曲信息</string>
+    <string name="lessThan60">不扫描小于60s的歌曲</string>
+    <string name="traverFolder">使用深度搜索(beta)</string>
+    <string name="search">搜索</string>
+    <string name="blackList">黑名单设置</string>
+    <string name="load">正在加载 ...</string>
 
     <string-array name="authorizationMessageArray">
         <item>为了能够更好的使用此软件，我们需要以下权限：</item>
@@ -59,7 +66,7 @@
         <item>+ 开放端口与其他设备通信</item>
         <item>+ 工作时常驻后台</item>
         <item>+ 推送通知</item>
-        <item></item>
+        <item> </item>
         <item>注意：如果未授权，程序可能发生未知错误！</item>
 
 

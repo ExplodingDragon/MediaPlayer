@@ -1,23 +1,15 @@
 package top.fksoft.player.android.activity.localActivity;
 
-import android.content.Context;
-import android.support.annotation.NonNull;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import net.sourceforge.pinyin4j.PinyinHelper;
+import android.widget.ListView;
 import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
-import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 import top.fksoft.player.android.R;
 import top.fksoft.player.android.activity.LocalActivity;
-import top.fksoft.player.android.utils.dao.BaseFragment;
-import top.fksoft.player.android.utils.view.SortListView;
 
 
 public class LocalFragment extends LocalActivity.LocalBaseFragment {
 
-    private SortListView sortView;
+    private ListView listView;
     HanyuPinyinOutputFormat outputFormat = new HanyuPinyinOutputFormat();
 
 
@@ -33,7 +25,7 @@ public class LocalFragment extends LocalActivity.LocalBaseFragment {
 
     @Override
     protected void initView() {
-        sortView = findViewById(R.id.sortView);
+        listView = findViewById(R.id.listView);
     }
 
     @Override

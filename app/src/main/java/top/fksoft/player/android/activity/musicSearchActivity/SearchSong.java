@@ -6,7 +6,7 @@ import top.fksoft.player.android.config.SongBean;
 import java.io.File;
 
 public class SearchSong {
-    private SongBean beanData = null; //歌曲的元信息
+    private final SongBean beanData; //歌曲的元信息
     private File imagePath = null; //歌曲图片的默认位置
     private File lyricPath = null;//歌词的默认位置
 
@@ -37,6 +37,7 @@ public class SearchSong {
     public boolean hasImage(){
         return this.imagePath !=null;
     }
+
     public boolean hasLyric(){
         return this.lyricPath !=null;
     }
@@ -45,4 +46,5 @@ public class SearchSong {
     public boolean equals(Object obj) {
         return beanData.equals(((SearchSong)obj).getBeanData());
     }
+
 }

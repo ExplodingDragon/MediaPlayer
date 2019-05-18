@@ -3,8 +3,8 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <top.fksoft.player.android.utils.view.SortListView
+    <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/sortView"/>
+            android:id="@+id/listView"/>
 </LinearLayout>

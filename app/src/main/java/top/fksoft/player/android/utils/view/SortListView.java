@@ -15,6 +15,7 @@ import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import top.fksoft.player.android.utils.android.DisplayUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -221,24 +222,28 @@ public class SortListView extends RelativeLayout {
 
         private int paddingTop = 5;
         private int paddingLeft = 5;
-        private int paddingRight = 10;
+        private int paddingRight = 20;
         private int paddingBottom = 5;
 
         private int touchWidth = 10;
         private int centerWidth = 50;
         private float touchX, touchY;
         private int centerTextColor = touchTextColor;
-
+        private int  textSize;
 
         public LineView(Context context) {
             super(context);
+            paddingTop = paddingLeft = paddingBottom = DisplayUtils.dip2px(context, 5);
+            touchWidth = DisplayUtils.getDisplayWidth(context)/95;
+            textSize = DisplayUtils.dip2px(context, 15);
+            centerWidth = DisplayUtils.dip2px(context, 30);
             textPaint.setAntiAlias(true);
             backPaint.setAntiAlias(true);
             centerTextPaint.setAntiAlias(true);
             centerBackPaint.setAntiAlias(true);
             checkBackPaint.setAntiAlias(true);
             textPaint.setFakeBoldText(true);
-            textPaint.setTextSize(18);
+            textPaint.setTextSize(textSize);
             centerTextPaint.setFakeBoldText(true);
         }
 
@@ -269,10 +274,11 @@ public class SortListView extends RelativeLayout {
             int centerY = getHeight() / 2;
             centerBackPaint.setColor(centerBackColor);
             centerTextPaint.setColor(centerTextColor);
-            centerTextPaint.setTextSize(24);
-            canvas.drawCircle(centerX, centerY - centerWidth / 4, centerWidth, centerBackPaint);
+            float v1 = (float) ((float) textSize * 1.25);
+            centerTextPaint.setTextSize( v1);
             float v = centerTextPaint.measureText(letter[checkId]);
-            canvas.drawText(letter[checkId], centerX - v / 2, centerY - v / 4, centerTextPaint);
+            canvas.drawCircle(centerX , centerY ,centerWidth , centerBackPaint);
+            canvas.drawText(letter[checkId], centerX- v/2, centerY +  v1 / 4, centerTextPaint);
 
 
         }

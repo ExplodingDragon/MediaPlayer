@@ -115,6 +115,14 @@ public class SongBean extends LitePalSupport implements SortListView.ListBean {
     }
 
 
+    public String getSongAlbum() {
+        return songAlbum;
+    }
+
+    public void setSongAlbum(String songAlbum) {
+        this.songAlbum = songAlbum;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null || !(obj instanceof SongBean)) {

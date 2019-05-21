@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import top.fksoft.player.android.R;
 import top.fksoft.player.android.activity.settingActivity.SoftPrefFragment;
+import top.fksoft.player.android.config.SongBean;
 import top.fksoft.player.android.utils.android.DisplayUtils;
 import top.fksoft.player.android.utils.android.ThemeUtils;
 
@@ -289,6 +290,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
     }
+
+
 
     public interface ImageChooseListener {
         /**

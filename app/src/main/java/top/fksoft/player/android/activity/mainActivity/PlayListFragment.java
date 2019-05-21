@@ -12,6 +12,7 @@ import android.widget.*;
 import top.fksoft.player.android.R;
 import top.fksoft.player.android.activity.ConfigSongListActivity;
 import top.fksoft.player.android.activity.LocalActivity;
+import top.fksoft.player.android.config.SongBean;
 import top.fksoft.player.android.config.SongListBean;
 import top.fksoft.player.android.io.BeanIO;
 import top.fksoft.player.android.io.FileIO;
@@ -49,7 +50,8 @@ public class PlayListFragment extends MainFragment implements AdapterView.OnItem
 
     @Override
     protected void initData() {
-
+        bean[0].setValue(BeanIO.newInstance().getSQLiteCount(SongBean.class));
+        headItemAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -59,9 +61,9 @@ public class PlayListFragment extends MainFragment implements AdapterView.OnItem
         songList = findViewById(R.id.songList);
         songArrListView = findViewById(R.id.songArrListView);
         bean = new ListBean[]{
-                new ListBean(R.mipmap.playlist_local, getString(R.string.playListHeadLocalSong, 0)),
-                new ListBean(R.mipmap.playlist_history, getString(R.string.playListHeadHistory, 0)),
-                new ListBean(R.mipmap.playlist_like, getString(R.string.playListHeadLike, 0))
+                new ListBean(R.mipmap.playlist_local, getString(R.string.playListHeadLocalSong),0),
+                new ListBean(R.mipmap.playlist_history, getString(R.string.playListHeadHistory), 0),
+                new ListBean(R.mipmap.playlist_like, getString(R.string.playListHeadLike), 0)
         };
         headItemAdapter = new HeadItemAdapter(getContext(), R.layout.activity_main_playlist_item_song, bean);
         musicCategories.setAdapter(headItemAdapter);
@@ -219,8 +221,9 @@ public class PlayListFragment extends MainFragment implements AdapterView.OnItem
     public static class ListBean {
         private int resId;
         private String title;
+        private int value;
 
-        public ListBean(int resId, String title) {
+        public ListBean(int resId, String title,int value) {
             this.resId = resId;
             this.title = title;
         }
@@ -230,11 +233,11 @@ public class PlayListFragment extends MainFragment implements AdapterView.OnItem
         }
 
         public String getTitle() {
-            return title;
+            return String.format(title,value);
         }
 
-        public void setTitle(String title) {
-            this.title = title;
+        public void setValue(int value) {
+            this.value = value;
         }
     } //菜单实体类
 }

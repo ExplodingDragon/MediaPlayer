@@ -11,13 +11,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import org.litepal.LitePal;
 import top.fksoft.player.android.R;
 import top.fksoft.player.android.activity.localActivity.AlbumFragment;
 import top.fksoft.player.android.activity.localActivity.FolderFragment;
 import top.fksoft.player.android.activity.localActivity.LocalFragment;
 import top.fksoft.player.android.activity.localActivity.SingerFragment;
+import top.fksoft.player.android.config.SongBean;
 import top.fksoft.player.android.utils.dao.BaseActivity;
 import top.fksoft.player.android.utils.dao.BaseFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LocalActivity extends BaseActivity {
 
@@ -31,10 +36,15 @@ public class LocalActivity extends BaseActivity {
                     new AlbumFragment(),
                     new FolderFragment()
     };
+    private List<SongBean> list = new ArrayList<>();
 
     @Override
     protected void initData() {
-
+        list.clear();
+        list.addAll(LitePal.findAll(SongBean.class));
+        for (LocalBaseFragment fragment : fragments) {
+            fragment.updateListData();
+        }
     }
 
     @Override
@@ -56,7 +66,7 @@ public class LocalActivity extends BaseActivity {
                 return fragments.length;
             }
         });
-        container.setOffscreenPageLimit(3);
+        container.setOffscreenPageLimit(4);
     }
 
     @Override
@@ -79,12 +89,19 @@ public class LocalActivity extends BaseActivity {
         int id = item.getItemId();
         if (id == R.id.importMusic) {
             startActivity(new Intent(getContext(),MusicSearchActivity.class));
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+    public List<SongBean> getMusicList(){
+        return list;
+    }
 
     public static abstract class  LocalBaseFragment extends BaseFragment<LocalActivity>{
-
+        public List<SongBean> getMusicList(){
+            return getContext().getMusicList();
+        }
+        public  void updateListData(){}
     }
 }

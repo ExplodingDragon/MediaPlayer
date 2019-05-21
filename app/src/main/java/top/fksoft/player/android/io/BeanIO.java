@@ -5,6 +5,7 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
 import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
 import org.litepal.LitePal;
+import org.litepal.crud.LitePalSupport;
 import top.fksoft.player.android.config.SongBean;
 import top.fksoft.player.android.config.SongListBean;
 import top.fksoft.player.android.config.SongListDataBean;
@@ -62,7 +63,9 @@ public class BeanIO {
 
         return count;
     }
-
+    public int getSQLiteCount(Class<? extends LitePalSupport> clazz) {
+        return LitePal.count(clazz);
+    }
     public SongListBean getSongListBean(long sqLiteId) {
         return LitePal.find(SongListBean.class, sqLiteId);
     }

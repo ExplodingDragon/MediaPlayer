@@ -137,4 +137,14 @@ public class SongBean extends LitePalSupport implements SortListView.ListBean {
         return songNameChars;
     }
 
+    @Override
+    public int hashCode() {
+        return hashCode.hashCode();
+    }
+    private boolean hasMusicPicture(){
+        return FileIO.newInstance().getMusicPicturePath(this).isFile();
+    }
+    private boolean hasMusicLyric(){
+        return FileIO.newInstance().getMusicLrcPath(this).isFile();
+    }
 }

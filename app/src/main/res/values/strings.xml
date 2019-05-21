@@ -59,6 +59,8 @@
     <string name="load">正在加载 ...</string>
     <string name="chooseAll">全部选择</string>
     <string name="saveAll">保存全部</string>
+    <string name="saveChoose">保存选择</string>
+    <string name="save_success">保存成功！</string>
 
     <string-array name="authorizationMessageArray">
         <item>为了能够更好的使用此软件，我们需要以下权限：</item>
@@ -71,6 +73,12 @@
         <item> </item>
         <item>注意：如果未授权，程序可能发生未知错误！</item>
 
-
+    </string-array>
+    <string-array name="defaultBlackList">
+        <item>%s/Android</item>
+        <item>%s/Tencent</item>
+        <item>%s/Pictures</item>
+        <item>%s/Miui</item>
+        <item>%s/DICM</item>
     </string-array>
 </resources>
